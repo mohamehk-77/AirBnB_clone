@@ -111,7 +111,6 @@ class HBNBCommand(cmd.Cmd):
 
     """Make it work in none interactive mode"""
     def cmdloop(self, intro=None):
-        """Make it work in none interactive mode"""
         if sys.stdin.isatty():
             super().cmdloop(intro)
         else:
