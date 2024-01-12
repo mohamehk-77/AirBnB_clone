@@ -109,6 +109,17 @@ class HBNBCommand(cmd.Cmd):
             else:
                 print("** no instance found **")
 
+    """Make it work in none interactive mode"""
+    def cmdloop(self, intro=None):
+        """Make it work in none interactive mode"""
+        if sys.stdin.isatty():
+            super().cmdloop(intro)
+        else:
+            for line in sys.stdin:
+                line = line.strip()
+                if line:
+                    self.onecmd(line)
+
     """
     Print all  all string representation of all
     instances based or not on the class name
