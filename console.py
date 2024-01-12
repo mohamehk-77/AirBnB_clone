@@ -1,7 +1,10 @@
 #!/usr/bin/python3
 import cmd
 import sys
+import models
 from models.base_model import BaseModel
+from models import storage
+
 
 """Define HBNB class"""
 """
@@ -53,21 +56,66 @@ class HBNBCommand(cmd.Cmd):
         instance.save()
         print(instance.id)
 
+    """Shows the string representation of an instance."""
     def do_show(self, line):
-        """Showing Class Id"""
-        arg = line.split()
-        if len(arg) == 1:
+        """Shows the string representation of an instance."""
+        args = line.split()
+        if len(args) == 0:
+            print("** class name missing **")
+        elif args[0] not in classes:
+            print("** class doesn't exist **")
+        elif len(args) == 1:
             print("** instance id missing **")
-        elif len(arg) == 0:
+        else:
+            class_name, instance_id = args[0], args[1]
+            key = class_name + "." + instance_id
+            all_objs = models.storage.all()
+            if key in all_objs:
+                print(all_objs[key])
+            else:
+                print("** no instance found **")
+    """Destroy Instance"""
+    def do_destroy(self, line):
+        """Destroy Instance"""
+        arg = line.split()
+        if len(arg) == 0:
             print("** class name missing **")
         elif arg[0] not in classes:
             print("** class doesn't exist **")
+        elif len(arg) == 1:
+            print("** instance id missing **")
         else:
-            key = arg[0] + "-" + arg[1]
-            if key in classes:
-                print(classes[key])
+            class_name, instance_id = arg[0], arg[1]
+            key = class_name + "." + instance_id
+            all_objs = models.storage.all()
+            if key in all_objs:
+                del all_objs[key]
+                models.storage.save()
             else:
                 print("** no instance found **")
+
+    """
+    Print all  all string representation of all
+    instances based or not on the class name
+    """
+    def do_all(self, line):
+        """
+        Print all  all string representation of all
+        instances based or not on the class name
+        """
+        arg = line.split()
+        if len(arg) == 0:
+            all_objs = models.storage.all()
+            for obj_id, obj in all_objs.items():
+                print(str(obj))
+        elif arg[0] not in classes:
+            print("** class doesn't exist **")
+        else:
+            all_objs = models.storage.all()
+            for obj_id, obj in all_objs.items():
+                class_name = obj.__class__.__name__
+                if class_name == arg[0]:
+                    print(str(obj))
 
     """Exit from the program by pressing Ctrl+D."""
     def do_EOF(self, arg):

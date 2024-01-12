@@ -2,12 +2,12 @@
 """
 Define BaseModel class
 """
+import models
 import uuid
 import datetime
-from models.engine.file_storage import FileStorage
 
 
-storage = FileStorage()
+# storage = FileStorage()
 """
 Define BaseModel class
 """
@@ -24,12 +24,12 @@ class BaseModel:
             self.id = str(uuid.uuid4())
             self.created_at = datetime.datetime.now()
             self.updated_at = datetime.datetime.now()
-            storage.new(self)
+            models.storage.new(self)
 
     """ Function that save the update date and time """
     def save(self):
         self.updated_at = datetime.datetime.now()
-        storage.save()
+        models.storage.save()
 
     def to_dict(self):
         Dict = self.__dict__.copy()
