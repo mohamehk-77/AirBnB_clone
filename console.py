@@ -4,6 +4,12 @@ import sys
 import models
 from models.base_model import BaseModel
 from models import storage
+from models.user import User
+from models.state import State
+from models.city import City
+from models.amenity import Amenity
+from models.place import Place
+from models.review import Review
 
 
 """Define HBNB class"""
@@ -11,9 +17,17 @@ from models import storage
 HBNB Command Line Interface.
 """
 classes = {
-    "BaseModel": BaseModel
+    "BaseModel": BaseModel,
+    "User": User,
+    "State": State,
+    "City": City,
+    "Amenity": Amenity,
+    "place": Place,
+    "Review": Review
     # Add other classes here
 }
+
+
 class HBNBCommand(cmd.Cmd):
     prompt = "(hbnb) "
 
@@ -45,7 +59,7 @@ class HBNBCommand(cmd.Cmd):
 
     """Create New Instance"""
     def do_create(self, class_name):
-        """Create New Instance"""
+        """Create New Instance\n"""
         if not class_name:
             print("** class name missing **")
             return
@@ -58,7 +72,7 @@ class HBNBCommand(cmd.Cmd):
 
     """Shows the string representation of an instance."""
     def do_show(self, line):
-        """Shows the string representation of an instance."""
+        """Shows the string representation of an instance.\n"""
         args = line.split()
         if len(args) == 0:
             print("** class name missing **")
@@ -74,9 +88,10 @@ class HBNBCommand(cmd.Cmd):
                 print(all_objs[key])
             else:
                 print("** no instance found **")
+
     """Destroy Instance"""
     def do_destroy(self, line):
-        """Destroy Instance"""
+        """Destroy Instance.\n"""
         arg = line.split()
         if len(arg) == 0:
             print("** class name missing **")
@@ -101,7 +116,7 @@ class HBNBCommand(cmd.Cmd):
     def do_all(self, line):
         """
         Print all  all string representation of all
-        instances based or not on the class name
+        instances based or not on the class name\n
         """
         arg = line.split()
         if len(arg) == 0:
@@ -117,9 +132,49 @@ class HBNBCommand(cmd.Cmd):
                 if class_name == arg[0]:
                     print(str(obj))
 
+    """
+    Updates an instance based on the class name
+    and id by adding or updating attribute.
+    """
+    def do_update(self, line):
+        """
+        Updates an instance based on the class name
+        and id by adding or updating attribute.\n
+        """
+        arg = line.split()
+        if len(arg) == 0:
+            print("** class name missing **")
+        elif arg[0] not in classes:
+            print("** class doesn't exist **")
+        elif len(arg) == 1:
+            print("** instance id missing **")
+        elif len(arg) == 2:
+            print("** attribute name missing **")
+        elif len(arg) == 3:
+            print("** value missing **")
+        else:
+            class_name = arg[0]
+            instance_id = arg[1]
+            attr_name = arg[2]
+            attr_value = arg[3].strip('"')
+            key = class_name + "." + instance_id
+            all_objs = models.storage.all()
+            if key not in all_objs:
+                print("** no instance found **")
+            else:
+                inst = all_objs[key]
+                if attr_name not in ("id", "create_at", "update_at"):
+                    if hasattr(inst, attr_name):
+                        attr_type = type(getattr(inst, attr_name))
+                    else:
+                        attr_type = str
+                        setattr(inst, attr_name, attr_type(attr_value))
+                        inst.save()
+
     """Exit from the program by pressing Ctrl+D."""
     def do_EOF(self, arg):
         return True
+
 
 if __name__ == '__main__':
     HBNBCommand().cmdloop()

@@ -4,31 +4,33 @@ Define BaseModel class
 """
 import models
 import uuid
-import datetime
+from datetime import datetime
 
 
 # storage = FileStorage()
 """
 Define BaseModel class
 """
+
+
 class BaseModel:
     """Function to define id, date, time"""
     def __init__(self, *args, **kwargs):
         if kwargs:
             for key, value in kwargs.items():
                 if key == "created_at" or key == "updated_at":
-                    value = datetime.datetime.strptime(value, "%Y-%m-%dT%H:%M:%S.%f")
+                    value = datetime.strptime(value, "%Y-%m-%dT%H:%M:%S.%f")
                 if not key == "__class__":
                     setattr(self, key, value)
         else:
             self.id = str(uuid.uuid4())
-            self.created_at = datetime.datetime.now()
-            self.updated_at = datetime.datetime.now()
+            self.created_at = datetime.now()
+            self.updated_at = datetime.now()
             models.storage.new(self)
 
     """ Function that save the update date and time """
     def save(self):
-        self.updated_at = datetime.datetime.now()
+        self.updated_at = datetime.now()
         models.storage.save()
 
     def to_dict(self):
