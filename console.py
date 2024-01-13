@@ -35,6 +35,7 @@ class HBNBCommand(cmd.Cmd):
     def do_help(self, arg):
         super().do_help(arg)
 
+    """Method to quit the program"""
     def do_quit(self, arg):
         """Quit command to exit the program\n"""
         return True
@@ -173,6 +174,7 @@ class HBNBCommand(cmd.Cmd):
 
     """Exit from the program by pressing Ctrl+D."""
     def do_EOF(self, arg):
+        print("\n", end="")
         return True
 
 
