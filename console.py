@@ -64,16 +64,6 @@ class HBNBCommand(cmd.Cmd):
         print("\r", end="")
         return True
 
-    # """Make It Work For None Interactive Mode"""
-    # def cmdloop(self, intro=None):
-    #     if sys.stdin.isatty():
-    #         super().cmdloop(intro)
-    #     else:
-    #         for line in sys.stdin:
-    #             line = line.strip()
-    #             if line:
-    #                 self.onecmd(line)
-
     """Create New Instance"""
     def do_create(self, class_name):
         """Create New Instance\n"""
@@ -187,23 +177,15 @@ class HBNBCommand(cmd.Cmd):
                         attr_type = str
                         setattr(inst, attr_name, attr_type(attr_value))
                         inst.save()
-
-    # def onecmd(self, line):
-    #     result = super().onecmd(line)
-    #     if sys.stdin.isatty():
-    #         print("(hbnb)", end="")
-    #     return result
-    # def cmdloop(self, intro=None):
-    #     if sys.stdin.isatty():
-    #         super().cmdloop(intro)
-    #     else:
-    #         return
-
 if __name__ == '__main__':
-    if sys.stdin.isatty():
-        HBNBCommand().cmdloop()
-    else:
-        for line in sys.stdin:
-            HBNBCommand().onecmd(line.rstrip())
-            print("(hbnb)\n", end="")
+    HBNBCommand().cmdloop()
 
+    if not sys.stdin.isatty():
+        '''method is used to interpret the input as a comand'''
+        for line in sys.stdin:
+            '''Read command line by line'''
+
+            HBNBCommand().onecmd(line.strip())
+            '''method to remove whitespace from beg end'''
+    else:
+        HBNBCommand().cmdloop()
