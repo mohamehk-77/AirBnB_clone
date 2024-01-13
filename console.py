@@ -174,7 +174,7 @@ class HBNBCommand(cmd.Cmd):
 
     """Exit from the program by pressing Ctrl+D."""
     def do_EOF(self, arg):
-        print("\n", end="")
+        print("\r", end="")
         return True
 
 
