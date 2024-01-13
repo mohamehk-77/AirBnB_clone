@@ -1,4 +1,6 @@
 #!/usr/bin/python3
+"""Define HBNB class"""
+
 import cmd
 import sys
 import models
@@ -12,10 +14,6 @@ from models.place import Place
 from models.review import Review
 
 
-"""Define HBNB class"""
-"""
-HBNB Command Line Interface.
-"""
 classes = {
     "BaseModel": BaseModel,
     "User": User,
@@ -26,6 +24,9 @@ classes = {
     "Review": Review
     # Add other classes here
 }
+"""
+HBNB Command Line Interface.
+"""
 
 
 class HBNBCommand(cmd.Cmd):
