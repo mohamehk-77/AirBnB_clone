@@ -188,15 +188,22 @@ class HBNBCommand(cmd.Cmd):
                         setattr(inst, attr_name, attr_type(attr_value))
                         inst.save()
 
-    def onecmd(self, line):
-        result = super().onecmd(line)
-        if sys.stdin.isatty():
-            print("(hbnb)", end="")
-        return result
+    # def onecmd(self, line):
+    #     result = super().onecmd(line)
+    #     if sys.stdin.isatty():
+    #         print("(hbnb)", end="")
+    #     return result
+    # def cmdloop(self, intro=None):
+    #     if sys.stdin.isatty():
+    #         super().cmdloop(intro)
+    #     else:
+    #         return
 
 if __name__ == '__main__':
-    HBNBCommand().cmdloop()
-
-    if not sys.stdin.isatty():
+    if sys.stdin.isatty():
+        HBNBCommand().cmdloop()
+    else:
         for line in sys.stdin:
-            HBNBCommand().onecmd(line.rstrip().split())
+            HBNBCommand().onecmd(line.rstrip())
+            print("(hbnb)\n", end="")
+
