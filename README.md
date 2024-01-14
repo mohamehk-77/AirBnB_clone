@@ -45,6 +45,17 @@ all dependencies needed for the application to run properly.
 - 9. More classes!
 - 10. Console 1.0
 
+## Unitest
+
+All files, classes, functions has been tested with unit tests
+(test_* methods), and all must pass before merging. To run unittest,
+you just need to execute the following command on the root directory:
+'python3 -m unittest discover tests'
+
+- Unit tests also pass in non-interactive mode
+you just need to execute the following command on the root directory:
+'echo "python3 -m unittest discover tests" | bash'
+
 ## Authors
 
 - ENG. Mohamed Kamal
