@@ -59,6 +59,11 @@ class HBNBCommand(cmd.Cmd):
     def help_EOF(self):
         print("Type EOF Or Ctrl + D As Command Will Exit\n")
 
+    """Exit from the program by pressing Ctrl+D."""
+    def do_EOF(self, arg):
+        print("\r", end="")
+        return True
+
     """Create New Instance"""
     def do_create(self, class_name):
         """Create New Instance\n"""
@@ -173,14 +178,12 @@ class HBNBCommand(cmd.Cmd):
                         setattr(inst, attr_name, attr_type(attr_value))
                         inst.save()
 
-    """Exit from the program by pressing Ctrl+D."""
-    def do_EOF(self, arg):
-        print("\r", end="")
-        return True
-
 
 if __name__ == '__main__':
-    if len(sys.argv) > 1:  # Non-interactive mode
-        HBNBCommand().onecmd(' '.join(sys.argv[1:]))
-    else:  # Interactive mode
-        HBNBCommand().cmdloop()
+    HBNBCommand().cmdloop()
+
+    # if not sys.stdin.isatty():
+    #     for line in sys.stdin:
+    #         HBNBCommand().onecmd(line.strip())
+    # else:
+    #     HBNBCommand().cmdloop()
