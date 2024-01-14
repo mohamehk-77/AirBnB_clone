@@ -13,6 +13,8 @@ The CLI allows users to perform actions such as registering new users, viewing e
 listing available properties, making reservations, checking on the status of their reservation,
 and logging out from the session.
 
+![Alt text](image-1.png)
+
 ### Usage
 
 To use this program, you need Python installed in your machine along with pip. Once you have them
@@ -29,20 +31,7 @@ all dependencies needed for the application to run properly.
 5. Run the application using the command `python console.py`.
 6. Now you should be able to start interacting with the system through the CLI.</s>
 
-<!DOCTYPE html>
-<html lang="en">
-<head>
-<meta charset="UTF-8">
-<title>Login Page | Admin Panel</title>
-<!--===============================================================================================-->
-<link rel="icon" type="image/png" href="<?php echo base_url
-()?>assets/images/icons/favicon.ico"/>
-<!--===============================================================================================-->
-<link rel="stylesheet" type="text/css" href="<?php echo base_url
-()?>assets/vendor/bootstrap/css/bootstrap.min.v4.css">
-<!--===============================================================================================-->
-<link rel="stylesheet" type="text/css" href="<?php echo base_url
-()?>assets/fonts/font-awesome-4.7.0/css/font
--awesome.min.css">
-<!--===============================================================================================-->
-<link rel="stylesheet" type="text/css" href="<?php echo base_url
+## Authors
+
+- ENG. Mohamed Kamal
+- ENG. Hossam Elsahafy
