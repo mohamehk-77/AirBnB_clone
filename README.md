@@ -31,6 +31,12 @@ all dependencies needed for the application to run properly.
 5. Run the application using the command `python console.py`.
 6. Now you should be able to start interacting with the system through the CLI.</s>
 
+## Tasks
+
+- 0. README, AUTHORS
+- 1. Be pycodestyle compliant!
+
+
 ## Authors
 
 - ENG. Mohamed Kamal
