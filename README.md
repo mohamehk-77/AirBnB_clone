@@ -50,11 +50,21 @@ all dependencies needed for the application to run properly.
 All files, classes, functions has been tested with unit tests
 (test_* methods), and all must pass before merging. To run unittest,
 you just need to execute the following command on the root directory:
+
 'python3 -m unittest discover tests'
 
 - Unit tests also pass in non-interactive mode
 you just need to execute the following command on the root directory:
+
 'echo "python3 -m unittest discover tests" | bash'
+
+If everything is green, you can push your changes. Otherwise, fix what's broken until
+everything turns green.
+Note: The project uses a modified version of the Django test client which allows us to make requests
+to our API without having to setup a full Django server. However, it does not support HTML views
+which means we cannot use Django templates or any other Django specific features.
+This limitation is due to the fact that Django is not installed as part of this project.
+Instead, only Flask (and its testing utilities) are used.</s>
 
 ## Authors
 
