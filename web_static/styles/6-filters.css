@@ -1,0 +1,101 @@
+section.filters {
+    background-color: white;
+    height: 70 px;
+    width: 100%;
+    border: 1px solid #DDDDDD;
+    border-radius: 4px;
+    display: flex;
+    align-items: center;
+    justify-content: right;
+}
+
+
+
+.locations {
+    position: relative;
+    height: 100%;
+    width: 25%;
+    border-right: 1px solid #DDDDDD;
+    margin-right: 0;
+}
+.amenities {
+    position: relative;
+    height: 100%;
+    width: 25%;
+    margin-right: auto;
+}
+.title {
+    font-weight: 600;
+    margin-bottom: 0;
+    margin-left: 15%;
+    text-align: left;
+}
+.subtitle {
+    font-weight: 400;
+    font-size: 14px;
+    margin-top: 1%;
+    margin-left: 15%;
+    text-align: left;
+}
+
+.popover{
+    margin-top: 0;
+    position: absolute;
+    display: none;
+    background-color: #fafafa;
+    width: 90%;
+    border: 1px solid #DDD;
+    border-radius: 4px;
+    list-style-type: none;
+    padding: 10px;
+    top: 100%;
+    left: 0;
+}
+
+.init {
+    list-style-type: none;
+}
+
+h2 {
+    font-size: 14px;
+}
+
+.locations li, .amenities li {
+    margin: 0; /* Reset margin */
+    padding: 5px 0; /* Add padding for each state */
+    display: block;
+}
+
+.locations ul {
+    padding: 0; /* Reset padding */
+    margin: 0; /* Reset margin */
+    list-style: none; /* Remove list bullets */
+}
+
+.amenities ul {
+    padding: 0; /* Reset padding */
+    margin: 0; /* Reset margin */
+    list-style: none; /* Remove list bullets */
+}
+
+
+.locations:hover .popover ,
+.amenities:hover .popover {
+    display: block;
+}
+
+section.filters button {
+    font-size: 18px;
+    background-color: #FF5A5F;
+    color: #FFFFFF;
+    height: 48px;
+    width: 20%;
+    border: 0;
+    border-radius: 4px;
+    margin-right: 30px;
+    text-align: center;
+    float: right;
+}
+section.filters button:hover {
+    opacity: 90%;
+}
